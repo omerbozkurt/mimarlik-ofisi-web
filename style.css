@@ -1,0 +1,296 @@
+:root {
+    --bg-dark: #0a0a0a;
+    --bg-card: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --accent: #d4d4d8;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --font-main: 'Manrope', sans-serif;
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Arka Plandaki Hareketli Balon Efektleri */
+.blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.blob-1 {
+    width: 600px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.1);
+    top: -200px;
+    right: -200px;
+}
+
+.blob-2 {
+    width: 400px;
+    height: 400px;
+    background: rgba(100, 100, 255, 0.05);
+    bottom: -100px;
+    left: -100px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: initial; /* GSAP pürüzsüz kaydırma için burası initial kalmalı */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Kumlanmış (Noise) Arka Plan Dokusu */
+#noise-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 50;
+    mix-blend-mode: overlay;
+}
+
+/* Cam Efekti (Glassmorphism) Tasarımı */
+.glass {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Genel Yerleşim */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+header {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* Navigasyonun her zaman en üstte kalması için */
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: var(--transition);
+}
+
+header.scrolled {
+    height: 70px;
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+}
+
+/* Hero (Giriş) Bölümü */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 1rem 60px 1rem; /* Üst padding artırıldı */
+}
+
+.hero-content {
+    z-index: 2;
+    max-width: 1000px;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 2rem;
+    letter-spacing: -2px;
+}
+
+.hero p {
+    color: var(--text-secondary);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    max-width: 650px;
+    margin: 0 auto 3rem auto;
+}
+
+/* Projeler Izgarası */
+.projects-section {
+    padding: 120px 0;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 3rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    position: relative;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.project-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.project-card:hover img {
+    transform: scale(1.05);
+}
+
+.project-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    z-index: 2;
+}
+
+.project-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-info p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* 3D Detay Sayfası */
+.detail-view {
+    padding-top: 100px;
+    min-height: 100vh;
+}
+
+.model-container {
+    height: 60vh;
+    border-radius: 30px;
+    margin-bottom: 3rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.project-details {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+}
+
+.meta-item {
+    margin-bottom: 2rem;
+}
+
+.meta-label {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Animasyonlar */
+.fade-in {
+    /* GSAP için işaretçi sınıf */
+}
+
+/* Buton Tasarımları */
+.btn {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    border: 1px solid var(--glass-border);
+    background: transparent;
+    color: white;
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background: white;
+    color: black;
+}
+
+.lang-btn {
+    opacity: 0.5;
+    transition: var(--transition);
+}
+
+.lang-btn.active {
+    opacity: 1;
+    font-weight: 800;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    color: white !important;
+}
+
+.nav-link {
+    color: white !important;
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Form Elemanları */
+input:focus, textarea:focus {
+    outline: none;
+    border-color: rgba(255,255,255,0.4) !important;
+    background: rgba(255,255,255,0.08) !important;
+}
+
+input, textarea {
+    transition: var(--transition);
+}

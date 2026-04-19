@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArchStudio | Lüks Mimari Tasarım ve İç Mimarlık Stüdyosu</title>
+    <meta name="description" content="ArchStudio, modern mimari, sürdürülebilir tasarım ve lüks konut projelerinde uzmanlaşmış ödüllü bir mimarlık ofisidir. Mekanın geleceğini bugün inşa ediyoruz.">
+    
+    <!-- Yazı Tipleri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 3D Modelleme ve Animasyon Kütüphaneleri -->
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Açılış Ekranı (Preloader) -->
+    <div id="preloader" style="position: fixed; inset: 0; background: var(--bg-dark); z-index: 10000; display: flex; align-items: center; justify-content: center;">
+        <div class="loader-logo" style="font-size: 2rem; font-weight: 800; opacity: 0; letter-spacing: -2px;">ArchStudio.</div>
+    </div>
+
+    <!-- Arka Plandaki Dinamik Balonlar -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    
+    <!-- Kumlanmış Doku Katmanı -->
+    <div id="noise-bg"></div>
+
+    <!-- Navigasyon Menüsü (Header) -->
+    <header id="main-header">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div class="logo" id="nav-logo" style="cursor: pointer;">ArchStudio.</div>
+            <nav style="display: flex; align-items: center; gap: 2.5rem;">
+                <ul style="display: flex; gap: 2rem; list-style: none;">
+                    <li><a href="#home" class="nav-link" data-i18n="nav_home">Ana Sayfa</a></li>
+                    <li><a href="#about" class="nav-link" data-i18n="nav_about">Hakkında</a></li>
+                    <li><a href="#projects" class="nav-link" data-i18n="nav_projects">Projeler</a></li>
+                    <li><a href="#contact" class="nav-link" data-i18n="nav_contact">İletişim</a></li>
+                </ul>
+                <!-- Dil Değiştirici -->
+                <div class="lang-switcher glass" style="padding: 5px 15px; border-radius: 20px; display: flex; gap: 10px; font-size: 0.8rem; cursor: pointer;">
+                    <span id="lang-tr" class="lang-btn active">TR</span>
+                    <span style="opacity: 0.3;">|</span>
+                    <span id="lang-en" class="lang-btn">EN</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Ana Uygulama İçeriği (JS Tarafından Render Edilir) -->
+    <main id="app">
+        <div id="loader" style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+            <p>Mükemmellik Yükleniyor...</p>
+        </div>
+    </main>
+
+    <!-- Uygulama Giriş Noktası -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
