@@ -13,9 +13,12 @@ const header = document.getElementById('main-header');
 /**
  * Uygulama Durum Yönetimi ve Router (Basit seviye)
  */
+const urlParams = new URLSearchParams(window.location.search);
+const initialProjectId = urlParams.get('project');
+
 const state = {
-    view: 'home',
-    projectId: null
+    view: initialProjectId ? 'detail' : 'home',
+    projectId: initialProjectId
 };
 
 // GSAP Eklentilerini Kaydet
